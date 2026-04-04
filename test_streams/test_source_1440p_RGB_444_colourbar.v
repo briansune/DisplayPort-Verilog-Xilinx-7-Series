@@ -104,9 +104,10 @@ module test_source_1440p_RGB_444_colourbar(
     // localparam [8:0] MVID   = {1'b0, 8'h2D};
     localparam [8:0] MAUD   = 9'b000000000;  // 0x00    
 
-	// 2720 * 3 = /4 = 2040 
-    localparam [7:0] TUs_per_line    = 8'd46;
-    localparam [7:0] last_active_TU  = 8'd43;
+	// 2.2.1.4.1 TU Example (Informative)
+	//24bpp 241.5 = 181.125 / 270 * 50 = 33.5
+    localparam [7:0] TUs_per_line    = 8'd65;
+    localparam [7:0] last_active_TU  = 8'd57;
 
     reg  [7:0] index = 0;
     reg  [8:0] d0 = 0;
@@ -203,7 +204,7 @@ always @(posedge clk) begin
         8'h17: begin d0 <= DUMMY;  d1 <= DUMMY; end
         8'h18: begin d0 <= DUMMY;  d1 <= DUMMY; end
     
-        // TU type A: 22 + 1 * 2 * 4 / 3 = 60
+        // TU
         8'h20: begin d0 <= PIX;    d1 <= PIX;    end
         8'h21: begin d0 <= PIX;    d1 <= PIX;    end
         8'h22: begin d0 <= PIX;    d1 <= PIX;    end
@@ -221,12 +222,12 @@ always @(posedge clk) begin
         8'h2E: begin d0 <= PIX;    d1 <= PIX;    end
         8'h2F: begin d0 <= PIX;    d1 <= PIX;    end
         8'h30: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h31: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h32: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h33: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h34: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h35: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h36: begin d0 <= PIX;    d1 <= FS;     end
+        8'h31: begin d0 <= FS;     d1 <= DUMMY;  end
+        8'h32: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h33: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h34: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h35: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h36: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h37: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h38: begin d0 <= DUMMY;  d1 <= FE;     end
     
@@ -239,15 +240,15 @@ always @(posedge clk) begin
         8'h65: begin d0 <= PIX;    d1 <= PIX;    end
         8'h66: begin d0 <= PIX;    d1 <= PIX;    end
         8'h67: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h68: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h69: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6a: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6b: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6c: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6d: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6e: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h6f: begin d0 <= BS;     d1 <= VB_NVS; end
-        8'h70: begin d0 <= MVID;   d1 <= MAUD;   end
+        8'h68: begin d0 <= BS;     d1 <= VB_NVS; end
+        8'h69: begin d0 <= MVID;   d1 <= MAUD;   end
+        8'h6a: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h6b: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h6c: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h6d: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h6e: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h6f: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h70: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h71: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h72: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h73: begin d0 <= DUMMY;  d1 <= DUMMY;  end
@@ -266,15 +267,15 @@ always @(posedge clk) begin
         8'h85: begin d0 <= PIX;    d1 <= PIX;    end
         8'h86: begin d0 <= PIX;    d1 <= PIX;    end
         8'h87: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h88: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h89: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8A: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8B: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8C: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8D: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8E: begin d0 <= PIX;    d1 <= PIX;    end
-        8'h8F: begin d0 <= BS;     d1 <= VB_VS;  end
-        8'h90: begin d0 <= MVID;   d1 <= MAUD;   end
+        8'h88: begin d0 <= BS;     d1 <= VB_VS;  end
+        8'h89: begin d0 <= MVID;   d1 <= MAUD;   end
+        8'h8A: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h8B: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h8C: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h8D: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h8E: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h8F: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'h90: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h91: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h92: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'h93: begin d0 <= DUMMY;  d1 <= DUMMY;  end
@@ -293,15 +294,15 @@ always @(posedge clk) begin
         8'hA5: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hA6: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hA7: begin d0 <= DUMMY;  d1 <= DUMMY;  end
-        8'hA8: begin d0 <= DUMMY;  d1 <= DUMMY;  end
-        8'hA9: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'hA8: begin d0 <= BS;     d1 <= VB_VS;  end
+        8'hA9: begin d0 <= MVID;   d1 <= MAUD;   end
         8'hAA: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hAB: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hAC: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hAD: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hAE: begin d0 <= DUMMY;  d1 <= DUMMY;  end
-        8'hAF: begin d0 <= BS;     d1 <= VB_VS;  end
-        8'hB0: begin d0 <= MVID;   d1 <= MAUD;   end
+        8'hAF: begin d0 <= DUMMY;  d1 <= DUMMY;  end
+        8'hB0: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hB1: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hB2: begin d0 <= DUMMY;  d1 <= DUMMY;  end
         8'hB3: begin d0 <= DUMMY;  d1 <= DUMMY;  end
